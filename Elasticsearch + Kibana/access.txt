@@ -1,0 +1,4 @@
+Accès :
+	Elasticsearch : http://localhost:9200
+
+	Kibana (interface web) : http://localhost:5601
