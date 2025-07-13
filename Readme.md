@@ -1,19 +1,19 @@
-# Technologies essentielles pour un Data Scientist (FR/LUX)
+# Essential Technologies for a Data Scientist (FR/LUX)
 
-| Technologie / Outil       | Usage principal                                  | Docker / Installation locale possible ?           | Pourquoi c’est utile                              |
-|--------------------------|------------------------------------------------|---------------------------------------------------|--------------------------------------------------|
-| **JupyterLab / Notebook** | Environnement interactif pour data exploration | Oui (`jupyter/datascience-notebook`)               | Exploration, prototypage rapide                   |
-| **MLflow**                | Suivi d’expériences ML, gestion modèles         | Oui (officiel MLflow + PostgreSQL + MinIO)         | MLOps, traçabilité et reproductibilité            |
-| **Apache Airflow**        | Orchestration workflows ETL/ML                   | Oui (Airflow + PostgreSQL + Redis)                   | Pipelines data complexes, automatisation          |
-| **PostgreSQL**            | Base relationnelle robuste                       | Oui (image officielle)                              | Stockage structuré, analytics, backend            |
-| **MongoDB**               | Base NoSQL document store                        | Oui                                                | Pour données semi-structurées, flexibilité        |
-| **Redis**                 | Cache, broker message, data clé-valeur          | Oui                                                | Accélération, queues, session management           |
-| **Kafka + Zookeeper**     | Streaming données en temps réel                  | Oui                                                | Gestion data temps réel, pipelines d’events        |
-| **DVC (Data Version Control)** | Gestion version données et modèles             | Oui (CLI + Gitea/GitLab pour repo)                  | Collaboration, gestion dataset versionnés          |
-| **Docker Compose**        | Orchestration multi-containers                    | Oui                                                | Déploiement local multi-service                     |
-| **FastAPI / Flask**       | APIs ML & data exposées                          | Oui                                                | Production et serveurs de modèles ML                |
-| **Grafana + Prometheus**  | Monitoring et alerting                           | Oui                                                | Supervision modèles, infra, pipelines               |
-| **Keycloak**              | Authentification et sécurité                     | Oui                                                | Sécuriser accès API, dashboard                      |
-| **ElasticSearch + Kibana**| Recherche full-text, analytics log data          | Oui                                                | Analyse de logs, recherches rapides                 |
-| **Apache Spark / PySpark**| Traitement Big Data distribué                    | Oui (via Spark standalone ou k8s)                   | Big Data, ML distribué                               |
-| **Kubeflow**              | MLOps et workflows Kubernetes                    | Oui (nécessite Kubernetes local type k3d/minikube) | Pipeline ML à grande échelle                         |
+| Technology / Tool         | Main Use                                         | Docker / Local Install Available?                   | Why It’s Useful                                   |
+|--------------------------|-------------------------------------------------|----------------------------------------------------|--------------------------------------------------|
+| **JupyterLab / Notebook** | Interactive environment for data exploration    | Yes (`jupyter/datascience-notebook`)                | Exploration, rapid prototyping                    |
+| **MLflow**                | ML experiment tracking, model management         | Yes (official MLflow + PostgreSQL + MinIO)          | MLOps, traceability and reproducibility           |
+| **Apache Airflow**        | ETL/ML workflow orchestration                     | Yes (Airflow + PostgreSQL + Redis)                   | Complex data pipelines, automation                 |
+| **PostgreSQL**            | Robust relational database                        | Yes (official image)                                 | Structured storage, analytics, backend             |
+| **MongoDB**               | NoSQL document store                              | Yes                                                 | Semi-structured data, flexibility                   |
+| **Redis**                 | Cache, message broker, key-value store            | Yes                                                 | Speed up, queues, session management                 |
+| **Kafka + Zookeeper**     | Real-time data streaming                           | Yes                                                 | Real-time data management, event pipelines          |
+| **DVC (Data Version Control)** | Data and model version control                  | Yes (CLI + Gitea/GitLab for repo)                     | Collaboration, versioned dataset management          |
+| **Docker Compose**        | Multi-container orchestration                      | Yes                                                 | Local multi-service deployment                        |
+| **FastAPI / Flask**       | ML & data APIs                                    | Yes                                                 | Production and serving ML models                      |
+| **Grafana + Prometheus**  | Monitoring and alerting                           | Yes                                                 | Monitoring models, infra, pipelines                   |
+| **Keycloak**              | Authentication and security                       | Yes                                                 | Secure API and dashboard access                       |
+| **ElasticSearch + Kibana**| Full-text search, log data analytics              | Yes                                                 | Log analysis, fast searches                            |
+| **Apache Spark / PySpark**| Distributed Big Data processing                    | Yes (via standalone Spark or k8s)                    | Big Data, distributed ML                               |
+| **Kubeflow**              | Kubernetes-based MLOps and workflows               | Yes (requires local Kubernetes like k3d/minikube)   | Large-scale ML pipeline                                |
