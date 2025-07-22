@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+  duckdb-ui:
+    image: ghcr.io/lovasoa/duckdb-wasm-http:latest
+    container_name: duckdb-ui
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/data
+    environment:
+      - DUCKDB_DATABASE_PATH=/data/mydb.duckdb
+    restart: unless-stopped
+

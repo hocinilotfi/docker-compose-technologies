@@ -1,0 +1,97 @@
+version: "3.8"
+
+services:
+  cassandra-1:
+    image: cassandra:4.1.3
+    container_name: cassandra-1
+    hostname: cassandra-1
+    ports:
+      - "7000:7000"
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=my-cluster
+      - CASSANDRA_DC=dc1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_SEEDS=cassandra-1
+      - CASSANDRA_LISTEN_ADDRESS=cassandra-1
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra-1
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0
+    volumes:
+      - cassandra-data-1:/var/lib/cassandra
+    networks:
+      - cassandra-net
+    restart: on-failure
+
+  cassandra-2:
+    image: cassandra:4.1.3
+    container_name: cassandra-2
+    hostname: cassandra-2
+    ports:
+      - "9043:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=my-cluster
+      - CASSANDRA_DC=dc1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_SEEDS=cassandra-1
+      - CASSANDRA_LISTEN_ADDRESS=cassandra-2
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra-2
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0
+    depends_on:
+      - cassandra-1
+    volumes:
+      - cassandra-data-2:/var/lib/cassandra
+    networks:
+      - cassandra-net
+    restart: on-failure
+
+  cassandra-3:
+    image: cassandra:4.1.3
+    container_name: cassandra-3
+    hostname: cassandra-3
+    ports:
+      - "9044:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=my-cluster
+      - CASSANDRA_DC=dc1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_SEEDS=cassandra-1
+      - CASSANDRA_LISTEN_ADDRESS=cassandra-3
+      - CASSANDRA_BROADCAST_ADDRESS=cassandra-3
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0
+    depends_on:
+      - cassandra-2
+    volumes:
+      - cassandra-data-3:/var/lib/cassandra
+    networks:
+      - cassandra-net
+    restart: on-failure
+
+  reaper:
+    image: thelastpickle/cassandra-reaper
+    container_name: reaper
+    depends_on:
+      - cassandra-1
+    ports:
+      - "8080:8080"
+    environment:
+      - REAPER_STORAGE_TYPE=cassandra
+      - REAPER_CASS_CONTACT_POINTS=cassandra-1
+      - REAPER_CASS_CLUSTER_NAME=my-cluster
+      - REAPER_DATACENTER_NAME=dc1
+      - REAPER_KEYSPACE=reaper_db
+    networks:
+      - cassandra-net
+    restart: on-failure
+
+volumes:
+  cassandra-data-1:
+  cassandra-data-2:
+  cassandra-data-3:
+
+networks:
+  cassandra-net:
+    driver: bridge
+
