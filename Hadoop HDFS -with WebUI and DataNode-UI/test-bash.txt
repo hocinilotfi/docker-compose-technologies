@@ -1,0 +1,21 @@
+docker exec -it namenode bash
+
+# List HDFS root
+hdfs dfs -ls /
+
+# Create a directory
+hdfs dfs -mkdir /testdir
+
+# Upload a file
+echo "hello hdfs" > file.txt
+hdfs dfs -put file.txt /testdir
+
+# Read the file
+hdfs dfs -cat /testdir/file.txt
+
+
+---
+Component	URL
+NameNode UI:	http://localhost:9870
+DataNode UI:	http://localhost:9864
+

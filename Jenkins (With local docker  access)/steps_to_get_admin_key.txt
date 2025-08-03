@@ -1,0 +1,7 @@
+# build the docker
+1- docker compose up -d --build
+
+# Get admin key
+2- docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+

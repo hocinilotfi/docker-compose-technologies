@@ -1,0 +1,6 @@
+blueocean
+docker-workflow
+pipeline-stage-view
+credentials-binding
+git
+
